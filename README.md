@@ -2,15 +2,15 @@
 
 A full-stack task management application built with **Node.js/TypeScript** backend and **Next.js** frontend.
 
-## Features
+## ✨ Features
 
 - 🔐 **Authentication** - JWT-based login/register with access & refresh tokens
 - ✅ **Task Management** - Create, edit, delete, and toggle task status
-- 🔍 **Search & Filter** - Search by title and filter by status
+- 🔍 **Search & Filter** - Search by title and filter by status (Pending, In Progress, Completed)
 - 📱 **Responsive Design** - Modern UI that works on all devices
-- 🎨 **Beautiful UI** - Gradient design with smooth animations
+- 🎨 **Beautiful UI** - Gradient design with smooth animations and glassmorphism effects
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Backend
 - Node.js + Express.js
@@ -25,7 +25,7 @@ A full-stack task management application built with **Node.js/TypeScript** backe
 - CSS Modules
 - React Context for state management
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js 18+ installed
@@ -52,26 +52,45 @@ npm run dev
 
 The frontend will run on http://localhost:3000
 
-## API Endpoints
+## 📡 API Endpoints
 
 ### Authentication
-- `POST /auth/register` - Register new user
-- `POST /auth/login` - Login user
-- `POST /auth/refresh` - Refresh access token
-- `POST /auth/logout` - Logout user
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/auth/register` | Register new user |
+| POST | `/auth/login` | Login user |
+| POST | `/auth/refresh` | Refresh access token |
+| POST | `/auth/logout` | Logout user |
 
 ### Tasks (Protected)
-- `GET /tasks` - Get all tasks (with pagination, filtering, search)
-- `POST /tasks` - Create new task
-- `GET /tasks/:id` - Get single task
-- `PATCH /tasks/:id` - Update task
-- `DELETE /tasks/:id` - Delete task
-- `POST /tasks/:id/toggle` - Toggle task status
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/tasks` | Get all tasks (pagination, filtering, search) |
+| POST | `/tasks` | Create new task |
+| GET | `/tasks/:id` | Get single task |
+| PATCH | `/tasks/:id` | Update task |
+| DELETE | `/tasks/:id` | Delete task |
+| POST | `/tasks/:id/toggle` | Toggle task status |
 
-## Screenshots
+## 📁 Project Structure
 
-![Dashboard](./screenshots/dashboard.png)
+```
+├── backend/
+│   ├── src/
+│   │   ├── controllers/    # Request handlers
+│   │   ├── middleware/     # Auth & validation
+│   │   ├── routes/         # API routes
+│   │   └── utils/          # JWT & password helpers
+│   └── prisma/             # Database schema
+│
+└── frontend/
+    └── src/
+        ├── app/            # Next.js pages
+        ├── components/     # React components
+        ├── lib/            # API client & auth context
+        └── types/          # TypeScript interfaces
+```
 
-## License
+## 📝 License
 
 MIT
