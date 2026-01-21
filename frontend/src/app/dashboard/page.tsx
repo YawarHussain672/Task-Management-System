@@ -225,7 +225,13 @@ export default function DashboardPage() {
             {showForm && (
                 <TaskForm
                     task={editingTask}
-                    onSubmit={editingTask ? handleUpdateTask : handleCreateTask}
+                    onSubmit={(data) => {
+                        if (editingTask) {
+                            handleUpdateTask(data);
+                        } else {
+                            handleCreateTask(data as CreateTaskInput);
+                        }
+                    }}
                     onClose={() => {
                         setShowForm(false);
                         setEditingTask(null);
