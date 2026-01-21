@@ -9,13 +9,14 @@ A full-stack task management application built with **Node.js/TypeScript** backe
 - 🔍 **Search & Filter** - Search by title and filter by status (Pending, In Progress, Completed)
 - 📱 **Responsive Design** - Modern UI that works on all devices
 - 🎨 **Beautiful UI** - Gradient design with smooth animations and glassmorphism effects
+- 🐘 **PostgreSQL** - Production-ready database integration
 
 ## 🛠️ Tech Stack
 
 ### Backend
 - Node.js + Express.js
 - TypeScript
-- Prisma ORM + SQLite
+- Prisma ORM + PostgreSQL (Neon DB)
 - JWT Authentication
 - bcrypt for password hashing
 
@@ -25,18 +26,19 @@ A full-stack task management application built with **Node.js/TypeScript** backe
 - CSS Modules
 - React Context for state management
 
-## 🚀 Getting Started
+## 🚀 Getting Started Locally
 
 ### Prerequisites
 - Node.js 18+ installed
-- npm or yarn
+- PostgreSQL database (or use Neon/Supabase)
 
 ### Backend Setup
 
 ```bash
 cd backend
 npm install
-npx prisma db push
+# Create a .env file with DATABASE_URL, JWT_SECRET, JWT_REFRESH_SECRET
+npx prisma generate
 npm run dev
 ```
 
@@ -47,10 +49,32 @@ The backend will run on http://localhost:3001
 ```bash
 cd frontend
 npm install
+# Create .env.local with NEXT_PUBLIC_API_URL=http://localhost:3001
 npm run dev
 ```
 
 The frontend will run on http://localhost:3000
+
+## ☁️ Deployment Guide
+
+### 1. Deploy Backend (Render.com)
+
+1. Create a new **Web Service** on Render connected to this repo (Root Directory: `backend`)
+2. Use these settings:
+   - **Build Command:** `npm install && npx prisma generate && npm run build`
+   - **Start Command:** `npm start`
+3. Add **Environment Variables**:
+   - `DATABASE_URL`: Your PostgreSQL connection string (from Neon/Supabase)
+   - `JWT_SECRET`: A long random string
+   - `JWT_REFRESH_SECRET`: Another long random string
+   - `FRONTEND_URL`: Your Vercel frontend URL (add this after deploying frontend)
+
+### 2. Deploy Frontend (Vercel)
+
+1. Import this repo into Vercel (Root Directory: `frontend`)
+2. Add **Environment Variable**:
+   - `NEXT_PUBLIC_API_URL`: Your deployed Render Backend URL (e.g., `https://task-management-api.onrender.com`)
+3. Deploy!
 
 ## 📡 API Endpoints
 
